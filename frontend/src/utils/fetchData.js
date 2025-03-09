@@ -38,6 +38,5 @@ export const fetchData = async (startIndex, count) => {
     return combined.slice(0, count);
   } catch (error) {
     console.error("Error fetching data:", error);
-    return [];
   }
 };

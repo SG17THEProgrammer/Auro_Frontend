@@ -1,6 +1,25 @@
+[data-theme="light"] {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --heading-color: #444444;
+  --navbar-bg-color:#007bff;
+  --paragraph-color:black;
+}
+
+
+[data-theme="dark"] {
+  --bg-color: #333333;
+  --text-color: #ffffff;
+  --heading-color: #dddddd;
+  --navbar-bg-color:black;
+  --paragraph-color:white;
+
+}
+
+
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #f8f9fa;
+  background-color: var(--bg-color);
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -9,7 +28,7 @@ body {
 .navbar {
   background-color: #007bff;
   padding: 5px;
-  color: white;
+  color: var(--text-color);
   text-align: center;
   font-size: 1rem;
   font-weight: bold;
@@ -18,7 +37,7 @@ body {
 .feed-container {
   width: 70%;
   margin: 20px auto;
-  background: white;
+  background: var(--bg-color);
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -35,7 +54,7 @@ body {
 
 .feed-item {
   padding: 15px;
-  background: white;
+  background: var(--bg-color);
   border-radius: 5px;
   transition: transform 0.2s ease-in-out;
 }
@@ -46,7 +65,7 @@ body {
 
 .feed-item p {
   font-size: 1rem;
-  color: #555;
+  color: var(--heading-color);
   line-height: 1.5;
 }
 
@@ -54,7 +73,7 @@ body {
   text-align: center;
   font-size: 1.2rem;
   padding: 20px;
-  color: #007bff;
+  color: var(--navbar-bg-color);
 }
 
 .post-card {
@@ -80,7 +99,7 @@ body {
   height: 100px;
   width: 100%;
   font-size: 1rem;
-  color:black;
+  color:var(--paragraph);
   text-align: left;
 }
 
@@ -91,7 +110,7 @@ body {
 
 .back-button {
   background: #007bff;
-  color: white;
+  color: var(--text-color);
   padding: 10px 20px;
   border: none;
   cursor: pointer;
@@ -101,7 +120,7 @@ body {
   display: flex;
   justify-content: center;
   padding: 10px;
-  background-color: #f8f8f8;
+  background-color: var(--text-color);
 }
 
 .search-bar input {
