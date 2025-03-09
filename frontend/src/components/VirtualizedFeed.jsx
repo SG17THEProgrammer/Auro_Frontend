@@ -4,18 +4,9 @@ import { useInView } from "react-intersection-observer";
 import { useNavigate, useLocation } from "react-router-dom";
 import Feed from "./Feed";
 import { fetchData } from "../utils/fetchData";
-<<<<<<< HEAD
-import Search from "./Search";  
-import "../App.css";
-=======
-<<<<<<< HEAD
-import Search from "./Search";  
-import "../App.css";
-=======
+import Search from "./Search";
 import "../App.css";
 import Navbar from "./Navbar";
->>>>>>> 46eb6ca (final)
->>>>>>> 58bd74b (final)
 
 const VirtualizedFeed = () => {
   const parentRef = useRef(null);
@@ -26,22 +17,9 @@ const VirtualizedFeed = () => {
   const [feeds, setFeeds] = useState(() => location.state?.feeds || []);
   const [loading, setLoading] = useState(false);
   const [filteredFeeds, setFilteredFeeds] = useState([]);
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 58bd74b (final)
 
   const isRefreshed = useRef(sessionStorage.getItem("isRefreshed") === "true");
 
-//   console.log(isRefreshed)
-
-<<<<<<< HEAD
-=======
-=======
-  const isRefreshed = useRef(sessionStorage.getItem("isRefreshed") === "true");
-
->>>>>>> 46eb6ca (final)
->>>>>>> 58bd74b (final)
   useEffect(() => {
     const loadInitialPosts = async () => {
       if (feeds.length === 0) {
@@ -54,16 +32,7 @@ const VirtualizedFeed = () => {
     loadInitialPosts();
   }, []);
 
-<<<<<<< HEAD
-
   // Infinite scrolling
-=======
-<<<<<<< HEAD
-
-  // Infinite scrolling
-=======
->>>>>>> 46eb6ca (final)
->>>>>>> 58bd74b (final)
   useEffect(() => {
     if (inView && !loading) {
       setLoading(true);
@@ -77,24 +46,9 @@ const VirtualizedFeed = () => {
     }
   }, [inView]);
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 58bd74b (final)
-
-  useEffect(() => {
-    if (!parentRef.current) return;
-
-    const savedScrollPosition = sessionStorage.getItem("scrollPosition");
-
-<<<<<<< HEAD
-=======
-=======
   useEffect(() => {
     if (!parentRef.current) return;
     const savedScrollPosition = sessionStorage.getItem("scrollPosition");
->>>>>>> 46eb6ca (final)
->>>>>>> 58bd74b (final)
     if (isRefreshed.current) {
       parentRef.current.scrollTo(0, 0);
       sessionStorage.removeItem("scrollPosition");
@@ -103,37 +57,16 @@ const VirtualizedFeed = () => {
     }
   }, [location]);
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 58bd74b (final)
-
   const handlePostClick = (id) => {
     sessionStorage.setItem("scrollPosition", parentRef.current?.scrollTop || 0);
     navigate(`/post/${id}`, { state: { feeds } });
-<<<<<<< HEAD
-=======
-=======
-  const handlePostClick = (id) => {
-    sessionStorage.setItem("scrollPosition", parentRef.current?.scrollTop || 0);
-    navigate(`/post/${id}`, { state: { feeds } });
-    window.scrollTo({ top: "0", behavior: "smooth"})
->>>>>>> 46eb6ca (final)
->>>>>>> 58bd74b (final)
+    window.scrollTo({ top: "0", behavior: "smooth" });
   };
 
   useEffect(() => {
     window.addEventListener("beforeunload", () => {
       sessionStorage.setItem("isRefreshed", "true");
     });
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> 46eb6ca (final)
->>>>>>> 58bd74b (final)
     return () => {
       window.removeEventListener("beforeunload", () => {
         sessionStorage.setItem("isRefreshed", "true");
@@ -141,18 +74,13 @@ const VirtualizedFeed = () => {
     };
   }, []);
 
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 58bd74b (final)
   const handleSearch = async (query) => {
     if (query.trim() === "") {
       setFilteredFeeds([]);
       return;
     }
     setLoading(true);
-    const results = await fetchData(0, 100); 
+    const results = await fetchData(0, 100);
     const filtered = results.filter((post) =>
       post.content.toLowerCase().includes(query.toLowerCase())
     );
@@ -160,12 +88,6 @@ const VirtualizedFeed = () => {
     setLoading(false);
   };
 
-
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 46eb6ca (final)
->>>>>>> 58bd74b (final)
   const rowVirtualizer = useVirtualizer({
     count: (filteredFeeds.length > 0 ? filteredFeeds.length : feeds.length) || 1_000_000,
     getScrollElement: () => parentRef.current,
@@ -174,21 +96,12 @@ const VirtualizedFeed = () => {
 
   return (
     <div>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 58bd74b (final)
+      <Navbar setFilteredFeeds={setFilteredFeeds} setLoading={setLoading} feeds={feeds} />
+
       <Search onSearch={handleSearch} />
 
       {/* Feed Container */}
-      <div className="feed-container" ref={parentRef} style={{ overflowY: "auto", height: "80vh" }}>
-<<<<<<< HEAD
-=======
-=======
-    <Navbar setFilteredFeeds={setFilteredFeeds} setLoading={setLoading} feeds={feeds}></Navbar>
-      <div className="feed-container" ref={parentRef} style={{ overflowY: "auto", height: "75vh" , marginTop:"90px" }}>
->>>>>>> 46eb6ca (final)
->>>>>>> 58bd74b (final)
+      <div className="feed-container" ref={parentRef} style={{ overflowY: "auto", height: "75vh", marginTop: "90px" }}>
         <div style={{ height: `${rowVirtualizer.getTotalSize()}px`, position: "relative" }}>
           {rowVirtualizer.getVirtualItems().map((virtualRow) => {
             const feed =
